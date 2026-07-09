@@ -10,11 +10,9 @@ import psycopg
 from pydantic import BaseModel, Field
 from concurrent.futures import ThreadPoolExecutor
 import os
-import streamlit as st
 
 load_dotenv()
-# API_KEY = os.getenv("GEMINI_API_KEY_2")
-API_KEY = st.secrets["GOOGLE_API_KEY"]
+API_KEY = os.getenv("GEMINI_API_KEY_2")
 
 llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite", api_key=API_KEY)
 parser = StrOutputParser()
