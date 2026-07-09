@@ -1,0 +1,14 @@
+langchain-core
+langchain-google-genai
+langchain-postgres
+langgraph
+python-dotenv
+requests
+streamlit
+argon2-cffi
+psycopg2-binary
+fastapi
+sqlalchemy
+pydantic
+argon2-cffi
+pydantic[email]
