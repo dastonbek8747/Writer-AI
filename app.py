@@ -3,6 +3,8 @@ import streamlit as st
 from api_get_data import write_stream_streamlit
 import requests as rq
 
+from backend.ai_evalutor import writer_ai
+
 API_URL = "http://127.0.0.1:8000"
 
 st.set_page_config(page_title="Synora AI", page_icon="✍️", layout="wide")
@@ -10,7 +12,7 @@ st.set_page_config(page_title="Synora AI", page_icon="✍️", layout="wide")
 if "session_id" not in st.session_state:
     st.session_state["session_id"] = ""
 if "aproved" not in st.session_state:
-    st.session_state["aproved"] = False
+    st.session_state["aproved"] = True
 if "history" not in st.session_state:
     st.session_state["history"] = []
 
@@ -167,8 +169,8 @@ if not st.session_state.aproved:
                     st.warning("Parollar mos kelmadi")
                 else:
                     response = rq.post(f"{API_URL}/register",
-                                        json={"email": email, "password": password,
-                                              "confirm_password": confirm_password})
+                                       json={"email": email, "password": password,
+                                             "confirm_password": confirm_password})
                     if response.json()['message'] == "User created successfully":
                         st.session_state.session_id = response.json()['new_user']["session_id"]
                         st.session_state.aproved = True
@@ -232,8 +234,9 @@ else:
 
         with st.status("Mavzu o'rganib chiqilmoqda...", expanded=True) as status:
             st.write("📋 Rejalar tuzilmoqda...")
-            response_ai = rq.post(f"{API_URL}/writer_ai",
-                                   json={'message': user_request, "session_id": st.session_state.session_id})
+            # response_ai = rq.post(f"{API_URL}/writer_ai",
+            #                        json={'message': user_request, "session_id": st.session_state.session_id})
+            response_ai = writer_ai(topic=user_request)
             st.write("📚 Rejalar asosida ma'lumotlar to'planmoqda...")
             status.update(label="Tayyor ✔  Word faylga ko'chirilmoqda...", expanded=False, state="complete")
 
@@ -250,7 +253,6 @@ else:
                 <p>{mavzusi}</p>
             </div>
             """, unsafe_allow_html=True)
-
 
             if file_name:
                 file_response = rq.get(f"{API_URL}/download_docx/{file_name}")
