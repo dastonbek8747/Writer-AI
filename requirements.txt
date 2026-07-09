@@ -12,3 +12,4 @@ sqlalchemy
 pydantic
 argon2-cffi
 pydantic[email]
+langgraph
