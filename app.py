@@ -3,7 +3,7 @@ import streamlit as st
 from api_get_data import write_stream_streamlit
 import requests as rq
 
-from backend.ai_evalutor import writer_ai
+from .backend.ai_evalutor import writer_ai
 
 API_URL = "http://127.0.0.1:8000"
 
