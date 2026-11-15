@@ -13,8 +13,6 @@ def verify_password(hashed_password: str, password: str):
     except:
         return False
 
-# print(hashing_password("daston8747"))
-# print(verify_password(
-#     hashed_password="$argon2id$v=19$m=65536,t=3,p=4$Q6JCxDjLrR5uL4rg8XJlTQ$qZ0mvd7QFMf7LcAOlktJXR4lFwC5X/eOiwBDTyjiABE"
-#     , password="daston8747"
-# ))
+# Misol (haqiqiy qiymatlarni .env faylida saqlang):
+# print(hashing_password("your_password"))
+# print(verify_password(hashed_password="<hash>", password="your_password"))
