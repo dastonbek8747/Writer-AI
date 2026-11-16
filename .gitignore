@@ -6,3 +6,15 @@ __pycache__/
 Files/
 *.docx
 .idea/
+
+# Python
+*.py[cod]
+*.egg-info/
+.venv/
+# Environment
+.env.*
+!.env.example
+# IDE
+.vscode/
+# OS
+.DS_Store
