@@ -13,8 +13,6 @@ def verify_password(hashed_password: str, password: str):
     except:
         return False
 
-# print(hashing_password("exampleuser"))
 # print(verify_password(
 #     hashed_PASSWORD="***REMOVED***"
-#     , password="exampleuser"
 # ))
